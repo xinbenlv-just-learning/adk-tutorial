@@ -17,7 +17,7 @@ public class HelloListView extends ListActivity
       super.onCreate(savedInstanceState);
 
       String[] countries = getResources().getStringArray(R.array.countries_array);
-      setListAdapter(new ArraryAdapter<String>(this, R.layout.list_item, coutries));
+      setListAdapter(new ArrayAdapter<String>(this, R.layout.list_item, countries));
       ListView lv = getListView();
       lv.setTextFilterEnabled(true);
 

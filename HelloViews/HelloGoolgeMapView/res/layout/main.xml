@@ -17,5 +17,5 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:clickable="true"
-    android:apiKey="0MOjDjxjH2A7XBZwur6pI-7SzAGaSgqOOqLufCQ"
+    android:apiKey="My Key Goes Here"
 />

@@ -2,4 +2,7 @@
   adk-tutorial
 [Description]
   The repository is set for Andorid Development Kit Tutorial
-
+  It includes a few tutorials from developer.android.com:http://developer.android.com/resources/browser.html?tag=tutorial
+  1. Hello World
+  2. Hello Views
+  3. Hello Database (which is not from the Official Tutorial)

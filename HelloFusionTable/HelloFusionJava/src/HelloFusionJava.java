@@ -76,7 +76,7 @@ public class HelloFusionJava {
    */
   public HelloFusionJava(String email, String password)
       throws AuthenticationException {
-    service = new GoogleService("fusiontables", "fusiontables.ApiExample");
+    service = new GoogleService("fusiontables", "fusiontables.HelloFusionJava");
     service.setUserCredentials(email, password, ClientLoginAccountType.GOOGLE);
   }
 
@@ -181,6 +181,8 @@ public class HelloFusionJava {
     }
   }
 
+
+  
   /**
    *
    * Authorizes the user with either a Google Account email and password
@@ -189,14 +191,15 @@ public class HelloFusionJava {
    *
    */
   public static void main(String[] args) throws ServiceException, IOException {
-//    if (args.length == 0) {
-//      System.err.println("Usage java ApiExample <email> <password> OR " +
-//       "java ApiExample <auth-token>");
-//      System.exit(1);
-//    }
+    if (args.length == 0) {
+        System.err.println("Usage java ApiExample <email> <password> OR " +
+         "java ApiExample <auth-token>");
+        System.exit(1);
+      }
+
     HelloFusionJava example = (args.length == 1) ?
     //For simplicity, you can hardcode your example account's Username and Password here, if you are using eclipse
-        new HelloFusionJava("xinbenlv.example@gmail.com") : new HelloFusionJava("xinbenlv.example@gmail.com", "abcd1234!");
+        new HelloFusionJava(args[0]) : new HelloFusionJava(args[0], args[1]);
 
     // Example select queries. These are queries over real public tables.
     // What was the price of electricity in California in different years?
@@ -207,6 +210,9 @@ public class HelloFusionJava {
     example.runSelect("select 'Male name', year from 1219 where rank = 1 and " +
         "'Female name' = 'Mary'");
 
+    example.runUpdate("show tables");
+    example.runUpdate("drop table 1453365");
+    example.runUpdate("show tables");
     // Example update queries.
     // These examples use an imaginary table of paintings and artists.
     // To create working examples, substitute your own tables and data.

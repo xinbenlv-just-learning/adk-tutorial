@@ -1,8 +1,3 @@
-// The example requires the Google GData Client library,
-// which in turn requires the
-// Google Collection library. These can be downloaded from
-// http://code.google.com/p/gdata-java-client/downloads/list and
-// http://code.google.com/p/google-collections/downloads/list.
 
 import com.google.gdata.client.ClientLoginAccountType;
 import com.google.gdata.client.GoogleService;
@@ -13,8 +8,11 @@ import com.google.gdata.util.AuthenticationException;
 import com.google.gdata.util.ContentType;
 import com.google.gdata.util.ServiceException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.StringReader;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Scanner;
@@ -28,7 +26,7 @@ import java.util.regex.Pattern;
  *
  * @author googletables-feedback@google.com (Google Fusion Tables Team)
  */
-public class ApiExample {
+public class HelloFusionJava {
 
   /**
    * Google Fusion Tables API URL stem.
@@ -76,7 +74,7 @@ public class ApiExample {
    * It then goes back to the Google GData APIs Client Library for the
    * setUserCredentials() method.
    */
-  public ApiExample(String email, String password)
+  public HelloFusionJava(String email, String password)
       throws AuthenticationException {
     service = new GoogleService("fusiontables", "fusiontables.ApiExample");
     service.setUserCredentials(email, password, ClientLoginAccountType.GOOGLE);
@@ -99,7 +97,7 @@ public class ApiExample {
    * It then goes back to the Google Data APIs Client Library for the
    * setUserToken() method.
    */
-  public ApiExample(String authToken) throws AuthenticationException {
+  public HelloFusionJava(String authToken) throws AuthenticationException {
     service = new GoogleService("fusiontables", "fusiontables.ApiExample");
     service.setUserToken(authToken);
   }
@@ -125,6 +123,7 @@ public class ApiExample {
 
   /* Prints the results of the query.                */
   /* No Google Fusion Tables API-specific code here. */
+
 
     Scanner scanner = new Scanner(request.getResponseStream(),"UTF-8");
     while (scanner.hasNextLine()) {
@@ -190,14 +189,14 @@ public class ApiExample {
    *
    */
   public static void main(String[] args) throws ServiceException, IOException {
-    if (args.length == 0) {
-      System.err.println("Usage java ApiExample <email> <password> OR " +
-       "java ApiExample <auth-token>");
-      System.exit(1);
-    }
-    ApiExample example = (args.length == 1) ?
+//    if (args.length == 0) {
+//      System.err.println("Usage java ApiExample <email> <password> OR " +
+//       "java ApiExample <auth-token>");
+//      System.exit(1);
+//    }
+    HelloFusionJava example = (args.length == 1) ?
     //For simplicity, you can hardcode your example account's Username and Password here, if you are using eclipse
-        new ApiExample(args[0]) : new ApiExample(args[0], args[1]);
+        new HelloFusionJava("xinbenlv.example@gmail.com") : new HelloFusionJava("xinbenlv.example@gmail.com", "abcd1234!");
 
     // Example select queries. These are queries over real public tables.
     // What was the price of electricity in California in different years?
@@ -213,14 +212,14 @@ public class ApiExample {
     // To create working examples, substitute your own tables and data.
 
     // An incorrect entry is added for the Mona Lisa.
-    example.runUpdate("insert into 123456 (painting, artist) values " +
-        "('mona lisa', 'michelangelo')");
+    //example.runUpdate("insert into 123456 (painting, artist) values " +
+    //    "('mona lisa', 'michelangelo')");
     // To correct the entry, we first retrieve its row ID.
-    example.runSelect("select rowid from 123456 where painting = 'mona lisa'");
+    //example.runSelect("select rowid from 123456 where painting = 'mona lisa'");
     // Update the entry. It is assumed that the previous statement
     // returned a row ID of 25.
-    example.runUpdate("update 123456 set artist = 'da vinci' where rowid = '25'");
+    //example.runUpdate("update 123456 set artist = 'da vinci' where rowid = '25'");
     // The entry is deleted.
-    example.runUpdate("delete from 123456 where rowid = '25'");
+    //example.runUpdate("delete from 123456 where rowid = '25'");
   }
 }
